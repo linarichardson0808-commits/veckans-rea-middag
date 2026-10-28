@@ -1,65 +1,6 @@
 'use client';
 import { useState } from 'react';
 
-const sampleRecipes = [
-  {
-    title: 'Krämig Kycklingpasta 🍗',
-    offer: 'Kycklingfilé 59:90 kr/kg (Coop)',
-    description: 'En snabb och god pasta med stekta kycklingstrimlor, grädde och vitlök.',
-    price: 'Ca 25 kr/portion'
-  },
-  {
-    title: 'Lax i ugn med citronsås 🐟',
-    offer: 'Laxfilé 4-pack 49:90 kr (ICA)',
-    description: 'Ugnstekt laxfilé som serveras med kokt potatis och en fräsch citronsås.',
-    price: 'Ca 30 kr/portion'
-  },
-  {
-    title: 'Vegetarisk Köttfärssås 🍝',
-    offer: 'Krossade tomater 3 för 20 kr (Willys)',
-    description: 'En fyllig linssoppa/sås med krossade tomater, morötter och italienska kryddor.',
-    price: 'Ca 15 kr/portion'
-  }
-];
-
-export default function Home() {
-  const [showRecipes, setShowRecipes] = useState(false);
-
-  return (
-    <main className="min-h-screen p-8 max-w-4xl mx-auto font-sans">
-      <header className="text-center my-8">
-        <h1 className="text-4xl font-bold mb-2">Veckans Rea-Middag 🛒🛒</h1>
-        <p className="text-gray-600">Hitta recept baserade på veckans erbjudanden!</p>
-      </header>
-
-      <div className="flex justify-center mb-8">
-        <button
-          onClick={() => setShowRecipes(true)}
-          className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all cursor-pointer"
-        >
-          Hämta veckans rea-middagar
-        </button>
-      </div>
-
-      {showRecipes && (
-        <div className="grid md:grid-cols-2 gap-6">
-          {sampleRecipes.map((recipe, index) => (
-            <div key={index} className="border rounded-xl p-6 shadow-sm bg-white hover:shadow-md transition-all">
-              <span className="text-xs font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full mb-2 inline-block">
-                {recipe.offer}
-              </span>
-              <h2 className="text-xl font-bold my-2">{recipe.title}</h2>
-              <p className="text-gray-700 text-sm mb-4">{recipe.description}</p>
-              <p className="text-sm font-bold text-gray-900">{recipe.price}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </main>
-  );
-}'use client';
-import { useState } from 'react';
-
 // Samtliga erbjudanden från din Willys-lista uppdelade i kategorier
 const willysOffers = [
   { category: '🥩 Kött & Chark', items: ['Svensk blandfärs Garant 500g – 49:90 kr/kg (Gäller till ons 28/10)', 'Högrev Prime ca 1,2kg – 119:00 kr/kg', 'Högrev i bit Scan/Dalsjöfors – 169:00 kr/kg', 'Kokt helgskinka Nybergs Deli – 49:90 kr/kg', 'Lammstek benfri Farmers – 179:00 kr/kg', 'Lammrostbiff Farmers – 199:00 kr/kg', 'Kalvhögrev Prime – 149:00 kr/kg', 'Spareribs Tulip 500g – 3 för 100:00 kr', 'Falukorv Scan 800g – 32:90 kr/st', 'Grillkorv Scan – 34:90 kr/st', 'Skivat stekfläsk Garant 375g – 32:90 kr/st', 'Strimlad rökt skinka Garant 180g – 2 för 35:00 kr'] },
@@ -105,7 +46,7 @@ const willysRecipes = [
 ];
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState('recipes'); // 'recipes' eller 'offers'
+  const [activeTab, setActiveTab] = useState('recipes');
 
   return (
     <main className="min-h-screen p-4 md:p-8 max-w-4xl mx-auto font-sans bg-gray-50">
@@ -117,7 +58,6 @@ export default function Home() {
         <p className="text-gray-600 text-sm md:text-base">Recept och veckans alla fyndvaror samlade på ett ställe!</p>
       </header>
 
-      {/* Fliknäppar */}
       <div className="flex justify-center gap-3 mb-8">
         <button
           onClick={() => setActiveTab('recipes')}
@@ -141,7 +81,6 @@ export default function Home() {
         </button>
       </div>
 
-      {/* INNEHÅLL: 5 RECEPT */}
       {activeTab === 'recipes' && (
         <div className="grid md:grid-cols-2 gap-6">
           {willysRecipes.map((recipe, index) => (
@@ -168,7 +107,6 @@ export default function Home() {
         </div>
       )}
 
-      {/* INNEHÅLL: ALLA ERBJUDANDEN */}
       {activeTab === 'offers' && (
         <div className="space-y-6">
           {willysOffers.map((group, index) => (
